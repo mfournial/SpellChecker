@@ -1,6 +1,7 @@
 package Dictree;
 
 import java.util.Optional;
+import java.util.Queue;
 
 /**
  * Created by mfournial on 21/04/2017.
