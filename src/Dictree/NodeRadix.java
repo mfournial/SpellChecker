@@ -24,8 +24,8 @@ class NodeRadix {
   }
 
   protected void addNext() {
-    this.next = new NodeRadix[27];
-    for (int i = 0; i < 27; i++) {
+    this.next = new NodeRadix[NB_LETTERS];
+    for (int i = 0; i < NB_LETTERS; i++) {
       next[i] = new NodeRadix();
     }
   }

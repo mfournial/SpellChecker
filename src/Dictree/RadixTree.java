@@ -71,8 +71,12 @@ public class RadixTree implements Dictree {
   public boolean check(String word) {
     NodeRadix current = root;
     for(char c : word.toCharArray()) {
-      if(c == '\'' && current.getNode(26).isPresent()) {
-        current = current.getNode(26).get();
+      if(c == '\'') {
+        if (current.getNode(26).isPresent()) {
+          current = current.getNode(26).get();
+        } else {
+          return false;
+        }
       } else if (current.getNode(c - 'a').isPresent()){
         current = current.getNode(c - 'a').get();
       } else {
