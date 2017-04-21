@@ -5,13 +5,13 @@ import java.util.Optional;
 /**
  * Created by mfournial on 21/04/2017.
  */
-class Node {
+class NodeRadix {
   public final int NB_LETTERS = 27;
 
   private boolean isWord;
-  private Node[] next;
+  private NodeRadix[] next;
 
-  Node() {
+  NodeRadix() {
     isWord = false;
   }
 
@@ -24,13 +24,13 @@ class Node {
   }
 
   protected void addNext() {
-    this.next = new Node[27];
+    this.next = new NodeRadix[27];
     for (int i = 0; i < 27; i++) {
-      next[i] = new Node();
+      next[i] = new NodeRadix();
     }
   }
 
-  protected Optional<Node> getNode(int i) {
+  protected Optional<NodeRadix> getNode(int i) {
     assert 0 <= i && i <= 27;
     if(next == null) {
       return Optional.empty();
