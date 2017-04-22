@@ -11,6 +11,8 @@ import Dictree.*;
 import static Dictree.TestSuiteHelper.readFile;
 import static Dictree.TestSuiteHelper.runMain;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 
 /**
@@ -63,6 +65,11 @@ public class TestSuite {
 
   }
 
+  /*
+   *  Load test
+   *  Depends on the implementation made by the programmer, should be run with a debugger that would
+   *  tell a lot of about the state of the DS, especially for smallDictionary
+   */
   @Test
   public void testLoad() throws IOException {
 
@@ -87,5 +94,78 @@ public class TestSuite {
 
     System.out.println("Loading times\n" + "Small dictionary: " + durationSmall + "ms\n"
                        + "Big dictionary: " + durationBig + "ms");
+  }
+
+  /*
+   *  First possible generalized test for the Dictree Interface, requires loading the dictionary
+   */
+
+  public void testCheck() throws IOException {
+
+    // Dictionaries
+    String smallDictionary = "tests/Dictree/smallDictionary.txt";
+    String bigDictionary = "tests/Dictree/bigDictionary.txt";
+
+    /*
+     Test words for small dictionary
+     */
+
+    // false
+    String f1 = "b";
+    String f2 = "bek";
+    String f3 = "bey";
+    String f4 = "'dont";
+    String f5 = "DO'NT";
+    String f6 = "dontt";
+    String f7 = "";
+    String f8 = "Do'NT";
+    String f9 = "spellCHECKER";
+
+    //true
+    String t1 = "a";
+    String t2 = "bad";
+    String t3 = "badly";
+    String t4 = "BADLY";
+    String t5 = "sHoUld";
+    String t6 = "don't";
+    String t7 = "dont";
+    String t8 = "WRITTEn";
+    String t9 = "wRITTEN";
+
+    /*
+     Test words for big dictionary
+     */
+
+    // false
+    // true
+    // TODO
+
+    /*
+     Runs the tests
+     */
+
+    // small dictionary
+    Dictree dictree = new RadixTree(new BufferedReader(new FileReader(smallDictionary)));
+
+    assertFalse(dictree.check(f1));
+    assertFalse(dictree.check(f2));
+    assertFalse(dictree.check(f3));
+    assertFalse(dictree.check(f4));
+    assertFalse(dictree.check(f4));
+    assertFalse(dictree.check(f5));
+    assertFalse(dictree.check(f6));
+    assertFalse(dictree.check(f7));
+    assertFalse(dictree.check(f8));
+    assertFalse(dictree.check(f9));
+
+    assertTrue(dictree.check(t1));
+    assertTrue(dictree.check(t2));
+    assertTrue(dictree.check(t3));
+    assertTrue(dictree.check(t4));
+    assertTrue(dictree.check(t5));
+    assertTrue(dictree.check(t6));
+    assertTrue(dictree.check(t7));
+    assertTrue(dictree.check(t8));
+    assertTrue(dictree.check(t9));
   }
 }
