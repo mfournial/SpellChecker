@@ -18,7 +18,7 @@ public class Main {
   final static int LENGHT = 40;
   static int words = 0;
 
-  // Default dictionary and document
+  // Default dictionary and default document directory
   final static String defaultdictionary = "src/dictionary.txt";
   final static String defaultdir = "src/inputs/";
 
@@ -71,7 +71,11 @@ public class Main {
       return;
     }
 
-    System.out.println("Reading from: " + defaultdir + argv[0]);
+    if(argv.length == 1) {
+      System.out.println("Reading from: " + defaultdir + argv[0]);
+    } else {
+      System.out.println("Reading from: " + defaultdir + argv[1]);
+    }
 
     // Prepares to report misspelled words
     ArrayList<String> typos = new ArrayList<>();

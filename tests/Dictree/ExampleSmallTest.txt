@@ -1,0 +1,26 @@
+Reading from: src/inputs/example.txt
+Numbers of words checked: 48
+Numbers of words in dictionary: 21
+Misspelled words:
+i's
+writtten
+'text
+deected
+theee
+case
+insensitive
+'dont'
+'dont
+apostrophe
+at
+right
+place
+note
+how
+word
+in
+dictionary
+d
+onkey
+raise
+onkey

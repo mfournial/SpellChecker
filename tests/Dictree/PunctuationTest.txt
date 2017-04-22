@@ -1,0 +1,11 @@
+Reading from: src/inputs/Punctuation.txt
+Numbers of words checked: 7
+Numbers of words in dictionary: 21
+Misspelled words:
+bcde
+bcde
+bcde'
+bcde'
+bcde
+b'cde
+'bcde

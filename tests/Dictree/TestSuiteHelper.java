@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Optional;
 
 import Checker.Main;
 
@@ -15,13 +16,22 @@ import Checker.Main;
 public class TestSuiteHelper {
 
   public static String runMain(String inputFile) {
+    return runMain(Optional.empty(), inputFile);
+  }
+
+  public static String runMain(Optional<String> dictionary, String inputFile) {
 
     // OUT Collector
     ByteArrayOutputStream output = new ByteArrayOutputStream();
     PrintStream ps;
+    PrintStream oldOut = System.out;
     System.setOut(ps = new PrintStream(output));
 
-    Main.main(new String[] {inputFile});
+    if(dictionary.isPresent()) {
+      Main.main(new String[] {dictionary.get(), inputFile});
+    } else {
+      Main.main(new String[] {inputFile});
+    }
 
     // returns main's output
     String result = output.toString();
@@ -30,9 +40,10 @@ public class TestSuiteHelper {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    System.setOut(System.out);
+    System.setOut(oldOut);
     ps.close();
     return result;
+
   }
 
   public static String readFile(String testFile) {
