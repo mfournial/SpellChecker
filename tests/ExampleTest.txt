@@ -1,0 +1,12 @@
+Reading from: src/example.txt
+Numbers of words checked: 48
+Numbers of words in dictionary: 354975
+Misspelled words:
+writtten
+'text
+deected
+theee
+'dont'
+'dont
+onkey
+onkey

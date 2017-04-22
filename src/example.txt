@@ -1,0 +1,5 @@
+This i's a [[a=bad++badly ++writtten%^&* 'text <that> should be deected by theee} spell-checker.
+hello HELLO heLLo       -> Case insensitive
+DONT DON'T 'DONT' 'DONT -> Apostrophe should be at the right place, note how dont is a word in the dictionary
+[DONKEY D]ONKEY DONKEY] -> Should raise "onkey"
+
