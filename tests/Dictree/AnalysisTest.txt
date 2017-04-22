@@ -1,4 +1,4 @@
-Reading from: src/Analysis.txt
+Reading from: src/inputs/Analysis.txt
 Numbers of words checked: 3877
 Numbers of words in dictionary: 354975
 Misspelled words:

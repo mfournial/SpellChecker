@@ -1,7 +1,5 @@
 import org.junit.Test;
 
-import Dictree.TestSuiteHelper;
-
 import static Dictree.TestSuiteHelper.readFile;
 import static Dictree.TestSuiteHelper.runMain;
 import static org.junit.Assert.assertEquals;
@@ -9,6 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Created by mfournial on 22/04/2017.
+ * Test suite for Dictree
  */
 public class TestSuite {
   @Test

@@ -11,6 +11,7 @@ import Dictree.RadixTree;
 
 /**
  * Created by mfournial on 21/04/2017.
+ * Demonstration of Dictree implementation
  */
 public class Main {
   // Maximum length of a word and number of words counted
@@ -19,7 +20,7 @@ public class Main {
 
   // Default dictionary and document
   final static String defaultdictionary = "src/dictionary.txt";
-  final static String defaultdir = "src/";
+  final static String defaultdir = "src/inputs/";
 
   public static void main(String[] argv) {
     // Check correct number of arguments

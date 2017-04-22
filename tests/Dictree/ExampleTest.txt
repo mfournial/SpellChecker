@@ -1,4 +1,4 @@
-Reading from: src/example.txt
+Reading from: src/inputs/example.txt
 Numbers of words checked: 48
 Numbers of words in dictionary: 354975
 Misspelled words:

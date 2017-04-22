@@ -1,4 +1,4 @@
-Reading from: src/Hamlet.txt
+Reading from: src/inputs/Hamlet.txt
 Numbers of words checked: 32252
 Numbers of words in dictionary: 354975
 Misspelled words:
