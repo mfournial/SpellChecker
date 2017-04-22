@@ -1,6 +1,12 @@
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Optional;
+
+import Dictree.*;
 
 import static Dictree.TestSuiteHelper.readFile;
 import static Dictree.TestSuiteHelper.runMain;
@@ -55,5 +61,31 @@ public class TestSuite {
     long durationMS = (endTime - startTime) / 1000000;
     System.out.println("Duration of Hamlet test : " + durationMS + "ms");
 
+  }
+
+  @Test
+  public void testLoad() throws IOException {
+
+    // dictionaries
+    String smallDictionary = "tests/Dictree/smallDictionary.txt";
+    String bigDictionary = "src/dictionary.txt";
+
+    Dictree dictree = new RadixTree();
+
+    // timed tests
+    long startTime = System.nanoTime();
+    dictree.load(new BufferedReader(new FileReader(smallDictionary)));
+    long  endTime = System.nanoTime();
+
+    long durationSmall = (endTime - startTime) / 1000000;
+
+    startTime = System.nanoTime();
+    dictree.load(new BufferedReader(new FileReader(bigDictionary)));
+    endTime = System.nanoTime();
+
+    long durationBig = (endTime - startTime) / 1000000;
+
+    System.out.println("Loading times\n" + "Small dictionary: " + durationSmall + "ms\n"
+                       + "Big dictionary: " + durationBig + "ms");
   }
 }
