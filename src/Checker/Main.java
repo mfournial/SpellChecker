@@ -1,3 +1,5 @@
+package Checker;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -135,7 +137,7 @@ public class Main {
     // Prints the mistakes
     System.out.println("Numbers of words checked: " + words);
     System.out.println("Numbers of words in dictionary: " + dictree.size());
-    System.out.println("Misspelled words: ");
+    System.out.println("Misspelled words:");
     for (String typo: typos) {
       System.out.println(typo);
     }
@@ -144,6 +146,8 @@ public class Main {
     try {
       dictionary.close();
       document.close();
+      reader.close();
+      words = 0;
     } catch (IOException e) {
       System.out.println("Error closing the files");
     }
