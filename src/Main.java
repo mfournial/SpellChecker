@@ -61,13 +61,14 @@ public class Main {
       if (argv.length == 2) {
         document = new FileReader(defaultdir + argv[1]);
       } else {
-        System.out.println(defaultdir + argv[0]);
         document = new FileReader(defaultdir + argv[0]);
       }
     } catch (FileNotFoundException e) {
       System.out.println("Could not read Document");
       return;
     }
+
+    System.out.println("Reading from: " + defaultdir + argv[0]);
 
     // Prepares to report misspelled words
     ArrayList<String> typos = new ArrayList<>();
