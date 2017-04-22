@@ -1,7 +1,6 @@
 import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Optional;
@@ -20,6 +19,9 @@ import static org.junit.Assert.assertTrue;
  * Test suite for Dictree
  */
 public class TestSuite {
+
+  // TODO Static loading for easier timing
+  // TODO final strings for minimal code change
 
   /*
    *  These tests enable you to work on the data structure
@@ -100,6 +102,7 @@ public class TestSuite {
    *  First possible generalized test for the Dictree Interface, requires loading the dictionary
    */
 
+  @Test
   public void testCheck() throws IOException {
 
     // Dictionaries
@@ -115,22 +118,22 @@ public class TestSuite {
     String f2 = "bek";
     String f3 = "bey";
     String f4 = "'dont";
-    String f5 = "DO'NT";
+    String f5 = "do'nt";
     String f6 = "dontt";
     String f7 = "";
-    String f8 = "Do'NT";
-    String f9 = "spellCHECKER";
+    String f8 = "badbadly";
+    String f9 = "spellchecker";
 
     //true
     String t1 = "a";
     String t2 = "bad";
     String t3 = "badly";
-    String t4 = "BADLY";
-    String t5 = "sHoUld";
+    String t4 = "spell";
+    String t5 = "should";
     String t6 = "don't";
     String t7 = "dont";
-    String t8 = "WRITTEn";
-    String t9 = "wRITTEN";
+    String t8 = "this";
+    String t9 = "the";
 
     /*
      Test words for big dictionary
