@@ -107,7 +107,7 @@ public class TestSuite {
 
     // Dictionaries
     String smallDictionary = "tests/Dictree/smallDictionary.txt";
-    String bigDictionary = "tests/Dictree/bigDictionary.txt";
+    String bigDictionary = "src/dictionary.txt";
 
     /*
      Test words for small dictionary
@@ -140,8 +140,26 @@ public class TestSuite {
      */
 
     // false
+    String fb1 = "wronglyment";
+    String fb2 = "notaword";
+    String fb3 = "aaaaaaaaa";
+    String fb4 = "azza";
+    String fb5 = "'thisisnot";
+    String fb6 = "sh'ould";
+    String fb7 = "should'";
+    String fb8 = "should''";
+    String fb9 = "it''s";
+
     // true
-    // TODO
+    String tb1 = "a";
+    String tb2 = "parliament";
+    String tb3 = "string";
+    String tb4 = "spell";
+    String tb5 = "checker";
+    String tb6 = "don't";
+    String tb7 = "dont";
+    String tb8 = "cyprinodontoid";
+    String tb9 = "cyprinodont";
 
     /*
      Runs the tests
@@ -170,5 +188,29 @@ public class TestSuite {
     assertTrue(dictree.check(t7));
     assertTrue(dictree.check(t8));
     assertTrue(dictree.check(t9));
+
+    // big dictionary
+    dictree = new RadixTree(new BufferedReader(new FileReader(bigDictionary)));
+
+    assertFalse(dictree.check(fb1));
+    assertFalse(dictree.check(fb2));
+    assertFalse(dictree.check(fb3));
+    assertFalse(dictree.check(fb4));
+    assertFalse(dictree.check(fb4));
+    assertFalse(dictree.check(fb5));
+    assertFalse(dictree.check(fb6));
+    assertFalse(dictree.check(fb7));
+    assertFalse(dictree.check(fb8));
+    assertFalse(dictree.check(fb9));
+
+    assertTrue(dictree.check(tb1));
+    assertTrue(dictree.check(tb2));
+    assertTrue(dictree.check(tb3));
+    assertTrue(dictree.check(tb4));
+    assertTrue(dictree.check(tb5));
+    assertTrue(dictree.check(tb6));
+    assertTrue(dictree.check(tb7));
+    assertTrue(dictree.check(tb8));
+    assertTrue(dictree.check(tb9));
   }
 }
