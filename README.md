@@ -18,14 +18,13 @@ For now, it takes a doc (eg .txt file) as an argument and outputs the misspelled
     onkey  
     onkey 
 
-### Acknowledgement 
+### Acknowledgements 
 
-SpellChecker was from a coursework done for CS50 written in C at the time.
+SpellChecker was from a coursework done for CS50 2015 written in C at the time.
 
 ## Known bugs and Issues
 
-Numbers are not checked (like 1st, 1nd), so are special characters. 
-No UnitTests have been written yet.
+Numbers are not checked (like 1st ~ 1nd), and special characters are largely ignored, maybe there's a better correction to provide using those.
 
 ## What's next for Spellchecker
 
@@ -33,4 +32,4 @@ No UnitTests have been written yet.
 (Load time >> check time). 
 * Improve load time by saving Dictree state
 * Support of other languages. Why not also mix languages?  
-* Provide correction with similar words.
+* Provide options with similar words.
