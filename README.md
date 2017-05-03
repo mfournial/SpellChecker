@@ -20,7 +20,7 @@ For now, it takes a doc (eg .txt file) as an argument and outputs the misspelled
 
 ### Acknowledgements 
 
-SpellChecker was from a coursework done for CS50 2015 written in C at the time.
+SpellChecker was from a coursework done for *CS50* in 2015 written in **C** at the time.
 
 ## Known bugs and Issues
 
@@ -33,3 +33,4 @@ Numbers are not checked (like 1st ~ 1nd), and special characters are largely ign
 * Improve load time by saving Dictree state
 * Support of other languages. Why not also mix languages?  
 * Provide options with similar words.
+* Compare it with an implementation with a radix tree, or switch to radix tree after like 3/4 letters not to waste space with empty arrays
