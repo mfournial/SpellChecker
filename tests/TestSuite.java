@@ -238,15 +238,15 @@ public class TestSuite {
 
     long durationSmall = (endTime - startTime) / 1000000;
 
-    try {
-      fileReader = new FileReader(bigDictionary);
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    }
-
-    startTime = System.nanoTime();
-    dictree.load(new BufferedReader(fileReader));
-    endTime = System.nanoTime();
+//    try {
+//      fileReader = new FileReader(bigDictionary);
+//    } catch (FileNotFoundException e) {
+//      e.printStackTrace();
+//    }
+//
+//    startTime = System.nanoTime();
+//    dictree.load(new BufferedReader(fileReader));
+//    endTime = System.nanoTime();
 
     long durationBig = (endTime - startTime) / 1000000;
 

@@ -14,11 +14,12 @@ public class ConcurrentRT implements Dictree {
   private NodeRadix root;
 
   public ConcurrentRT (BufferedReader reader) {
+    size = new AtomicInteger(0);
     load(reader);
   }
 
   public ConcurrentRT() {
-    size.set(-1);
+    size = new AtomicInteger(-1);
   }
 
   @Override
