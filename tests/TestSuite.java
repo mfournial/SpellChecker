@@ -1,6 +1,7 @@
 import org.junit.Test;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Optional;
@@ -212,5 +213,44 @@ public class TestSuite {
     assertTrue(dictree.check(tb7));
     assertTrue(dictree.check(tb8));
     assertTrue(dictree.check(tb9));
+  }
+
+  @Test
+  public void ConcurrentRTTestLoad() {
+
+    String smallDictionary = "tests/Dictree/smallDictionary.txt";
+    String bigDictionary = "src/dictionary.txt";
+
+    Dictree dictree = new ConcurrentRT();
+
+    // timed tests
+    long startTime = System.nanoTime();
+
+    FileReader fileReader;
+    try {
+      fileReader = new FileReader(smallDictionary);
+    } catch (FileNotFoundException e) {
+      System.err.println("Concurrent fileReader error");
+      return;
+    }
+    dictree.load(new BufferedReader(fileReader));
+    long  endTime = System.nanoTime();
+
+    long durationSmall = (endTime - startTime) / 1000000;
+
+    try {
+      fileReader = new FileReader(bigDictionary);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+
+    startTime = System.nanoTime();
+    dictree.load(new BufferedReader(fileReader));
+    endTime = System.nanoTime();
+
+    long durationBig = (endTime - startTime) / 1000000;
+
+    System.out.println("Loading times\n" + "Small dictionary: " + durationSmall + "ms\n"
+                       + "Big dictionary: " + durationBig + "ms");
   }
 }

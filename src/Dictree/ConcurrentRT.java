@@ -17,6 +17,10 @@ public class ConcurrentRT implements Dictree {
     load(reader);
   }
 
+  public ConcurrentRT() {
+    size.set(-1);
+  }
+
   @Override
   public void load(BufferedReader reader) {
 
