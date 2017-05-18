@@ -13,12 +13,7 @@ public class RadixTree implements Dictree {
   private NodeRadix root;
 
   public RadixTree(BufferedReader reader) throws IOException{
-    try {
-      load(reader);
-    } catch (IOException e) {
-      size = -1;
-      System.err.println(e.getCause());
-    }
+    load(reader);
   }
 
   public RadixTree() {
@@ -26,7 +21,7 @@ public class RadixTree implements Dictree {
   }
 
   @Override
-  public void load(BufferedReader reader) throws IOException{
+  public void load(BufferedReader reader) {
 
     // Resets the class
     size = 0;
@@ -35,7 +30,14 @@ public class RadixTree implements Dictree {
     // Reads the dictionary line by line, corresponding to a new Word on each line
     String line;
 
-    line = reader.readLine();
+    try {
+      line = reader.readLine();
+    } catch (IOException e) {
+      e.printStackTrace();
+      size = -1;
+      root = null;
+      return;
+    }
 
     // Add all the word in the buffer
     while(line != null) {
@@ -65,7 +67,11 @@ public class RadixTree implements Dictree {
       size++;
 
       // prepare next iteration
-      line = reader.readLine();
+      try {
+        line = reader.readLine();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
   }
 

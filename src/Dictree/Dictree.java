@@ -10,7 +10,7 @@ public interface Dictree {
 
   // Load the dictionary in memory from a buffered reader
   // TODO add the pres about dic
-  void load(BufferedReader reader) throws IOException;
+  void load(BufferedReader reader);
 
   // Checks if the word exists
   // TODO add the spres about word
