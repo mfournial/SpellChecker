@@ -2,6 +2,8 @@
 
 SpellChecker is a very fast way of checking the spelling of you documents.
 For now, it takes a doc (eg .txt file) as an argument and outputs the misspelled words.
+
+**Note it's still in development, soon versions will split working code and beta code**
   
 ### Example:   
 
