@@ -2,6 +2,8 @@ package Dictree;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -12,6 +14,7 @@ public class ConcurrentRT implements Dictree {
 
   private AtomicInteger size;
   private NodeRadix root;
+  Set<String> words;
 
   public ConcurrentRT (BufferedReader reader) {
     size = new AtomicInteger(0);
@@ -28,39 +31,41 @@ public class ConcurrentRT implements Dictree {
     size.set(0);
     root = new NodeRadix();
 
-    StampedLock lock = new StampedLock();
+    words = new HashSet<>();
+    reader.lines().parallel().forEach(l -> words.add(l));
 
-    reader.lines()
-        .parallel()
-        .forEach(l -> IntStream.range(0, l.length()).forEach( i -> {
+//    StampedLock lock = new StampedLock();
 
-          NodeRadix current = root;
+//    reader.lines()
+//        .parallel()
+//        .forEach(l -> IntStream.range(0, l.length()).forEach( i -> {
 
-          char c = l.charAt(i);
+//          NodeRadix current = root;
 
-          long stamp = lock.readLock();
+//          char c = l.charAt(i);
 
-          try {
-            if (!current.hasNext()) {
-              stamp = lock.tryConvertToWriteLock(stamp);
-              current.addNext();
-            }
+//          long stamp = lock.readLock();
 
-            if (c == '\'') {
-              current = current.getNode(26).get();
-            } else {
-              current = current.getNode(c - 'a').get();
-            }
-          } finally {
-            lock.unlock(stamp);
-          }
+//          try {
+//            if (!current.hasNext()) {
+//              stamp = lock.tryConvertToWriteLock(stamp);
+//              current.addNext();
+//            }
 
-          if (i == l.length() - 1) {
-            stamp = lock.writeLock();
-            current.setWord();
-            size.incrementAndGet();
-          }
-        }) );
+//            if (c == '\'') {
+//              current = current.getNode(26).get();
+//            } else {
+//              current = current.getNode(c - 'a').get();
+//            }
+//          } finally {
+//            lock.unlock(stamp);
+//          }
+//          if (i == l.length() - 1) {
+//            stamp = lock.writeLock();
+//            current.setWord();
+//            size.incrementAndGet();
+//          }
+//        }) );
   }
 
   private void add(NodeRadix root, String l) {
@@ -74,6 +79,6 @@ public class ConcurrentRT implements Dictree {
 
   @Override
   public int size() {
-    return 0;
+    return words.size();
   }
 }

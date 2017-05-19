@@ -25,6 +25,14 @@ public class TestSuite {
   // TODO final strings for minimal code change
 
   /*
+   *  Reusable data across tests
+   */
+  final String bigDictionary = "src/dictionary.txt";
+  final String smallDictionary = "tests/Dictree/smallDictionary.txt";
+  final int SIZEBIG = 354975;
+  final int SIZESMALL = 21;
+
+  /*
    *  These tests enable you to work on the data structure
    */
   @Test
@@ -234,21 +242,25 @@ public class TestSuite {
       return;
     }
     dictree.load(new BufferedReader(fileReader));
+    assertEquals(SIZESMALL, dictree.size());
+
     long  endTime = System.nanoTime();
 
     long durationSmall = (endTime - startTime) / 1000000;
 
-//    try {
-//      fileReader = new FileReader(bigDictionary);
-//    } catch (FileNotFoundException e) {
-//      e.printStackTrace();
-//    }
-//
-//    startTime = System.nanoTime();
-//    dictree.load(new BufferedReader(fileReader));
-//    endTime = System.nanoTime();
+    try {
+      fileReader = new FileReader(bigDictionary);
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+
+    startTime = System.nanoTime();
+    dictree.load(new BufferedReader(fileReader));
+    endTime = System.nanoTime();
 
     long durationBig = (endTime - startTime) / 1000000;
+
+    assertEquals(SIZEBIG, dictree.size());
 
     System.out.println("Loading times\n" + "Small dictionary: " + durationSmall + "ms\n"
                        + "Big dictionary: " + durationBig + "ms");
