@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.StampedLock;
@@ -12,9 +13,8 @@ import java.util.stream.IntStream;
 
 public class ConcurrentRT implements Dictree {
 
-  private AtomicInteger size;
-  private NodeRadix root;
-  Set<String> words;
+  private final AtomicInteger size;
+  private volatile NodeRadix root;
 
   public ConcurrentRT (BufferedReader reader) {
     size = new AtomicInteger(0);
@@ -31,8 +31,29 @@ public class ConcurrentRT implements Dictree {
     size.set(0);
     root = new NodeRadix();
 
-    words = new HashSet<>();
-    reader.lines().parallel().forEach(l -> words.add(l));
+    reader.lines()
+        .parallel()
+        .forEach(l -> IntStream.range(0, l.length()).forEachOrdered( i -> {
+
+          NodeRadix current = root;
+
+          char c = Character.toLowerCase(l.charAt(i));
+
+          if(!current.hasNext()) {
+            current.addNext();
+          }
+
+          if (c == '\'') {
+            current = current.getNode(26).get();
+          } else {
+           current = current.getNode(c - 'a').get();
+          }
+
+          if (i == l.length() - 1) {
+            current.setWord();
+            size.incrementAndGet();
+          }
+        }) );
 
 //    StampedLock lock = new StampedLock();
 
@@ -74,11 +95,26 @@ public class ConcurrentRT implements Dictree {
 
   @Override
   public boolean check(String word) {
-    return false;
+    NodeRadix current = root;
+    for(int i = 0; i < word.length(); i++) {
+      char c = word.charAt(i);
+      if(c == '\'') {
+        if (current.getNode(26).isPresent()) {
+          current = current.getNode(26).get();
+        } else {
+          return false;
+        }
+      } else if (current.getNode(c - 'a').isPresent()){
+        current = current.getNode(c - 'a').get();
+      } else {
+        return false;
+      }
+    }
+    return current.isWord();
   }
 
   @Override
   public int size() {
-    return words.size();
+    return size.get();
   }
 }

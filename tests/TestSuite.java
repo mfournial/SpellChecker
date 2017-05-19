@@ -29,7 +29,7 @@ public class TestSuite {
    */
   final String bigDictionary = "src/dictionary.txt";
   final String smallDictionary = "tests/Dictree/smallDictionary.txt";
-  final int SIZEBIG = 354975;
+  final int SIZEBIG = 354973;
   final int SIZESMALL = 21;
 
   /*

@@ -46,7 +46,7 @@ public class RadixTree implements Dictree {
 
       // Traverses the radix tree
       for (int i = 0; i < line.length(); i++) {
-        char c = line.charAt(i).toLower();
+        char c = line.charAt(i);
 
         // Creates a children node if needed
         if (!current.hasNext()) {
