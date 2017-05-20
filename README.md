@@ -1,5 +1,6 @@
 # SpellChecker
 
+Spell checking made fast and easy via this fast and scalable spellchecker. 
 SpellChecker is a very fast way of checking the spelling of you documents.
 For now, it takes a doc (eg .txt file) as an argument and outputs the misspelled words.
 
