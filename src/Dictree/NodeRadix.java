@@ -1,11 +1,12 @@
 package Dictree;
 
+import java.io.Serializable;
 import java.util.Optional;
 
 /**
  * Created by mfournial on 21/04/2017.
  */
-class NodeRadix {
+class NodeRadix implements Serializable{
   public final int NB_LETTERS = 27; // 26 letters + '
 
   private boolean isWord;
