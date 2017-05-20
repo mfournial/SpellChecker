@@ -1,17 +1,44 @@
 package Dictree;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-import java.util.concurrent.locks.StampedLock;
 import java.util.stream.IntStream;
 
-public class ConcurrentRT implements Dictree {
+public class ConcurrentRT implements Dictree, Serializable {
+
+  public static void main(String[] args) {
+
+    FileReader filereader;
+
+    try {
+      filereader = new FileReader("src/dictionary.txt");
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+      return;
+    }
+
+    Dictree tree = new ConcurrentRT(new BufferedReader(filereader));
+
+    String codebase = "src/Dictree/ConcurrentRT.java";
+
+    try {
+      FileOutputStream fileOut = new FileOutputStream("out/ConcurrentRT.ser");
+      ObjectOutputStream stream = new ObjectOutputStream(fileOut);
+      stream.writeObject(tree);
+      stream.close();
+      fileOut.close();
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
   private final AtomicInteger size;
   private volatile NodeRadix root;
