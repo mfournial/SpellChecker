@@ -265,4 +265,61 @@ public class TestSuite {
     System.out.println("Loading times\n" + "Small dictionary: " + durationSmall + "ms\n"
                        + "Big dictionary: " + durationBig + "ms");
   }
+
+  @Test
+  public void testConcurrentWord() {
+
+    // false
+
+    String f1 = "kj";
+    String f2 = "aabb";
+    String f3 = "tis";
+    String f4 = "A'yti";
+    String f5 = "'bythis";
+    String f6 = "'hello";
+    String f7 = "he'llo";
+    String f8 = "Helo";
+    String f9 = "tests'";
+
+    // true
+
+    String t1 = "true";
+    String t2 = "a";
+    String t3 = "hello";
+    String t4 = "test";
+    String t5 = "going";
+    String t6 = "belongs";
+    String t7 = "it's";
+    String t8 = "dont";
+    String t9 = "dont'";
+
+    FileReader fileReader;
+    try {
+      fileReader = new FileReader(bigDictionary);
+    } catch (IOException e) {
+      e.printStackTrace();
+      return;
+    } ;
+
+    Dictree dictree = new ConcurrentRT(new BufferedReader(fileReader));
+    assertFalse(dictree.check(f1));
+    assertFalse(dictree.check(f2));
+    assertFalse(dictree.check(f3));
+    assertFalse(dictree.check(f4));
+    assertFalse(dictree.check(f5));
+    assertFalse(dictree.check(f6));
+    assertFalse(dictree.check(f7));
+    assertFalse(dictree.check(f8));
+    assertFalse(dictree.check(f9));
+    assertTrue(dictree.check(t1));
+    assertTrue(dictree.check(t2));
+    assertTrue(dictree.check(t3));
+    assertTrue(dictree.check(t4));
+    assertTrue(dictree.check(t5));
+    assertTrue(dictree.check(t6));
+    assertTrue(dictree.check(t7));
+    assertTrue(dictree.check(t8));
+    assertTrue(dictree.check(t9));
+
+  }
 }
