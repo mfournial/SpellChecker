@@ -27,10 +27,10 @@ public class TestSuite {
   /*
    *  Reusable data across tests
    */
-  final String bigDictionary = "src/dictionary.txt";
-  final String smallDictionary = "tests/Dictree/smallDictionary.txt";
-  final int SIZEBIG = 354973;
-  final int SIZESMALL = 21;
+  private final String bigDictionary = "src/dictionary.txt";
+  private final String smallDictionary = "tests/Dictree/smallDictionary.txt";
+  private final int SIZEBIG = 354973;
+  private final int SIZESMALL = 21;
 
   /*
    *  These tests enable you to work on the data structure
@@ -274,16 +274,16 @@ public class TestSuite {
     String f1 = "kj";
     String f2 = "aabb";
     String f3 = "tis";
-    String f4 = "A'yti";
+    String f4 = "a'yti";
     String f5 = "'bythis";
     String f6 = "'hello";
     String f7 = "he'llo";
-    String f8 = "Helo";
+    String f8 = "helo";
     String f9 = "tests'";
 
     // true
 
-    String t1 = "true";
+    String t1 = "work";
     String t2 = "a";
     String t3 = "hello";
     String t4 = "test";
@@ -299,7 +299,7 @@ public class TestSuite {
     } catch (IOException e) {
       e.printStackTrace();
       return;
-    } ;
+    }
 
     Dictree dictree = new ConcurrentRT(new BufferedReader(fileReader));
     assertFalse(dictree.check(f1));
