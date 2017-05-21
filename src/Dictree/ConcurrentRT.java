@@ -8,6 +8,7 @@ public class ConcurrentRT implements Dictree, java.io.Serializable {
 
   private final AtomicInteger size;
   private volatile NodeRadix root;
+  private static long serialVersionUID = 555555555;
 
   public ConcurrentRT (BufferedReader reader) {
     size = new AtomicInteger(0);
