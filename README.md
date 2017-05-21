@@ -23,8 +23,8 @@ For now, it takes a doc (eg .txt file) as an argument and outputs the misspelled
 
 ### Acknowledgements 
 
-SpellChecker was from a coursework done for *CS50* in 2015 written in **C** at the time.  
-English dicitonary from [dwyl](https://github.com/dwyl/english-words/blob/master/LICENSE.md).
+SpellChecker was originaly made for a coursework for *CS50* in 2015 written in **C** at the time.  
+English dictionary from [dwyl](https://github.com/dwyl/english-words/blob/master/LICENSE.md).
 
 ## Known bugs and Issues
 
