@@ -1,6 +1,7 @@
 package Dictree;
 
 import java.io.BufferedReader;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
@@ -114,7 +115,23 @@ public class ConcurrentRT implements Dictree, java.io.Serializable {
 
   @Override
   public void addUniqueWord(String word) {
+    NodeRadix current = root;
+    for (int i = 0; i < word.length(); i++) {
+      char c = Character.toLowerCase(word.charAt(i));
 
+      if(!current.hasNext()) {
+        current.addNext();
+      }
+
+      if (c == '\'') {
+        Optional<NodeRadix> next = current.getNode(26);
+        current = next.get();
+      } else {
+        current = current.getNode(c - 'a').get();
+      }
+    }
+
+    current.setWord();
   }
 
   @Override
@@ -137,6 +154,6 @@ public class ConcurrentRT implements Dictree, java.io.Serializable {
       }
     }
 
-    current.setWord();
+    current.forgetWord();
   }
 }

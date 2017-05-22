@@ -44,4 +44,6 @@ class NodeRadix implements Serializable{
     isWord = true;
   }
 
+  protected void forgetWord() { isWord = false; }
+
 }
