@@ -13,7 +13,7 @@ public interface Dictree {
   void load(BufferedReader reader);
 
   // Checks if the word exists
-  // TODO add the spres about word
+  // TODO add the pres about word
   boolean check(String word);
 
   // Return the number of words loaded, -1 if none
@@ -23,4 +23,10 @@ public interface Dictree {
   default boolean isLoaded() {
     return size() !=  -1;
   }
+
+  // Add to DS unique word
+  void addUniqueWord(String word);
+
+  // Remove specific word form DS
+  void removeUniqueWord(String word);
 }

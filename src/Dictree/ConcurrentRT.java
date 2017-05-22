@@ -111,4 +111,32 @@ public class ConcurrentRT implements Dictree, java.io.Serializable {
   public int size() {
     return size.get();
   }
+
+  @Override
+  public void addUniqueWord(String word) {
+
+  }
+
+  @Override
+  public void removeUniqueWord(String word) {
+
+    NodeRadix current = root;
+
+    for (int i = 0; i < word.length(); i++) {
+      char c = Character.toLowerCase(word.charAt(i));
+      if (c == '\'') {
+        if (current.getNode(26).isPresent()) {
+          current = current.getNode(26).get();
+        } else {
+          return;
+        }
+      } else if (current.getNode(c - 'a').isPresent()) {
+        current = current.getNode(c - 'a').get();
+      } else {
+        return;
+      }
+    }
+
+    current.setWord();
+  }
 }
